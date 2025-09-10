@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Role Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="logo">Login</div>
+      <ul class="role-list">
+        <li class="role-item active" onclick="showForm('user')">
+          <span class="icon">👤</span> User Login
+        </li>
+        <li class="role-item" onclick="showForm('admin')">
+          <span class="icon">🛠️</span> Admin Login
+        </li>
+        <li class="role-item" onclick="showForm('guest')">
+          <span class="icon">🚪</span> Guest Login
+        </li>
+        <li class="role-item" onclick="showForm('subscriber')">
+          <span class="icon">💳</span> Subscribers / Paid User
+        </li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="form-container" id="formArea">
+        <h2 id="formTitle">User Login</h2>
+        <form id="loginForm">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" required>
+
+          <label for="password">Password</label>
+          <input type="password" id="password" required>
+
+          <button type="submit" class="btn">Log In</button>
+        </form>
+        <p class="toggle-text">
+          Don’t have an account? <a href="signup.html">Sign Up</a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+   <script>
+    function showForm(role) {
+      let title = document.getElementById("formTitle");
+
+      if (role === "user") title.textContent = "User Login";
+      if (role === "admin") title.textContent = "Admin Login";
+      if (role === "guest") title.textContent = "Guest Login";
+      if (role === "subscriber") title.textContent = "Subscribers / Paid User Login";
+
+      // highlight active role
+      document.querySelectorAll(".role-item").forEach(el => el.classList.remove("active"));
+      event.target.closest(".role-item").classList.add("active");
+    }
+  </script>
+</body>
+</html>
