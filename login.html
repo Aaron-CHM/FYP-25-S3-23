@@ -13,16 +13,16 @@
     <div class="sidebar">
       <div class="logo">Login</div>
       <ul class="role-list">
-        <li class="role-item active" onclick="showForm('user')">
+        <li class="role-item active" onclick="showForm('user', event)">
           <span class="icon">👤</span> User Login
         </li>
-        <li class="role-item" onclick="showForm('admin')">
+        <li class="role-item" onclick="showForm('admin', event)">
           <span class="icon">🛠️</span> Admin Login
         </li>
-        <li class="role-item" onclick="showForm('guest')">
+        <li class="role-item" onclick="showForm('guest', event)">
           <span class="icon">🚪</span> Guest Login
         </li>
-        <li class="role-item" onclick="showForm('subscriber')">
+        <li class="role-item" onclick="showForm('subscriber', event)">
           <span class="icon">💳</span> Subscribers / Paid User
         </li>
       </ul>
@@ -44,27 +44,66 @@
         <p class="toggle-text">
           Don’t have an account? <a href="signup.html">Sign Up</a>
         </p>
-		<p class="toggle-text">
-			<a href="index.html">← Back to Home</a>
-		</p>
+        <p class="toggle-text">
+          <a href="index.html">← Back to Home</a>
+        </p>
       </div>
     </div>
 
   </div>
 
-   <script>
-    function showForm(role) {
-      let title = document.getElementById("formTitle");
+<script>
+  // Test credentials for each role
+  const testCredentials = {
+    "User Login": { email: "user@test.com", password: "1234", redirect: "user.html" },
+    "Admin Login": { email: "admin@test.com", password: "admin", redirect: "admin.html" },
+    "Guest Login": { email: "guest@test.com", password: "guest", redirect: "guest.html" },
+    "Subscribers / Paid User Login": { email: "subscriber@test.com", password: "sub123", redirect: "subscriber.html" }
+  };
 
-      if (role === "user") title.textContent = "User Login";
-      if (role === "admin") title.textContent = "Admin Login";
-      if (role === "guest") title.textContent = "Guest Login";
-      if (role === "subscriber") title.textContent = "Subscribers / Paid User Login";
+  // Function to switch roles and auto-fill credentials
+  function showForm(role, event) {
+    let title = document.getElementById("formTitle");
+    let emailInput = document.getElementById("email");
+    let passwordInput = document.getElementById("password");
 
-      // highlight active role
-      document.querySelectorAll(".role-item").forEach(el => el.classList.remove("active"));
-      event.target.closest(".role-item").classList.add("active");
+    // Update title
+    if(role === "user") title.textContent = "User Login";
+    if(role === "admin") title.textContent = "Admin Login";
+    if(role === "guest") title.textContent = "Guest Login";
+    if(role === "subscriber") title.textContent = "Subscribers / Paid User Login";
+
+    // Highlight active role
+    document.querySelectorAll(".role-item").forEach(el => el.classList.remove("active"));
+    event.target.closest(".role-item").classList.add("active");
+
+    // Auto-fill email and password
+    const roleTitle = title.textContent;
+    emailInput.value = testCredentials[roleTitle].email;
+    passwordInput.value = testCredentials[roleTitle].password;
+  }
+
+  // Login form submit handler
+  const loginForm = document.getElementById('loginForm');
+  loginForm.addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent page reload
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const role = document.querySelector('.role-item.active').textContent.trim();
+
+    const creds = testCredentials[role];
+    if(email === creds.email && password === creds.password) {
+      alert(`${role} successful! Redirecting...`);
+      window.location.href = creds.redirect; // Redirect to appropriate page
+    } else {
+      alert("Invalid email or password. Try the test credentials.");
     }
-  </script>
+  });
+
+  // Initialize with user credentials on page load
+  window.onload = () => showForm('user', { target: document.querySelector('.role-item.active') });
+</script>
+
 </body>
 </html>

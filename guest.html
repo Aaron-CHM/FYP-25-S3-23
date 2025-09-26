@@ -12,7 +12,7 @@
     <div class="logo">Face Animation</div>
     <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="#" class="active">Guest</a></li>
+      <li><a href="#" class="active">Guest Dashboard</a></li>
       <li><a href="login.html">Logout</a></li>
     </ul>
   </div>
@@ -21,31 +21,38 @@
   <section class="guest-dashboard">
     <div class="dashboard-container">
       <h2>Welcome, Guest</h2>
-      <p>You are currently logged in as a guest user. Explore and preview what we offer.</p>
+      <p>You are currently logged in as a guest user. Explore and preview our features.</p>
 
       <!-- Profile -->
       <div class="profile-card">
         <h3>👤 Guest Profile</h3>
         <p><strong>Role:</strong> Guest</p>
         <p><strong>Access Level:</strong> Limited</p>
+        <div class="profile-actions">
+          <button class="btn small-btn" id="upgradeBtn">Upgrade Account</button>
+        </div>
       </div>
 
-      <!-- Sample Animations -->
+      <!-- Sample Animations Gallery -->
       <div class="sample-animations">
-        <h3>🎬 View Sample Animations</h3>
-        <div class="video-container">
-          <video controls>
-            <source src="sample.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+        <h3>🎬 Sample Animations</h3>
+        <div class="animation-list" id="sampleAnimationList">
+          <!-- Videos will be dynamically added here -->
         </div>
       </div>
 
       <!-- Upgrade Plan -->
       <div class="upgrade-plan">
         <h3>⚡ Upgrade Your Plan</h3>
-        <p>Unlock full access to premium features and unlimited face animations.</p>
-        <a href="signup.html" class="btn">Upgrade to Subscriber</a>
+        <p>Unlock full access to premium features, unlimited avatars, and advanced animations.</p>
+        <form class="subscription-form" id="upgradeForm">
+          <label for="plan">Choose a Plan:</label>
+          <select id="plan">
+            <option value="monthly">Monthly - $9.99</option>
+            <option value="yearly">Yearly - $99.99</option>
+          </select>
+          <button type="submit" class="btn">Subscribe Now</button>
+        </form>
       </div>
     </div>
   </section>
@@ -54,5 +61,44 @@
   <div class="footer">
     <p>&copy; 2025 Face Animation. All Rights Reserved.</p>
   </div>
+
+<script>
+  // Upgrade button scrolls to subscription form
+  const upgradeBtn = document.getElementById('upgradeBtn');
+  const upgradeForm = document.getElementById('upgradeForm');
+
+  upgradeBtn.onclick = () => {
+    upgradeForm.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // Handle subscription submission
+  upgradeForm.onsubmit = (e) => {
+    e.preventDefault();
+    const plan = document.getElementById('plan').value;
+    alert(`You selected the ${plan} plan. Redirecting to payment...`);
+  };
+
+  // Sample animations gallery
+  const sampleAnimations = [
+    'sample1.mp4',
+    'sample2.mp4',
+    'sample3.mp4',
+    'sample4.mp4'
+  ];
+
+  const sampleAnimationList = document.getElementById('sampleAnimationList');
+
+  sampleAnimations.forEach(src => {
+    const animDiv = document.createElement('div');
+    animDiv.className = 'animation-item';
+    animDiv.innerHTML = `
+      <video controls>
+        <source src="${src}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>`;
+    sampleAnimationList.appendChild(animDiv);
+  });
+</script>
+
 </body>
 </html>
