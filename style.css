@@ -306,4 +306,134 @@ input {
   background: #00796b;
 }
 
+/* User Dashboard */
+.user-dashboard {
+  padding: 60px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.profile-card {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 8px;
+  background: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.profile-card .btn {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.danger-btn {
+  background: #e53935;
+}
+
+.danger-btn:hover {
+  background: #c62828;
+}
+
+.profile-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px; /* space between buttons */
+  flex-wrap: wrap; /* prevents overlap on small screens */
+}
+
+.small-btn {
+  padding: 6px 12px;     /* smaller padding */
+  font-size: 14px;       /* smaller text */
+  width: auto;           /* don’t stretch full width */
+  display: inline-block; /* inline button style */
+}
+
+/* Avatar Management */
+.avatar-management {
+  margin-top: 30px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.upload-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.avatar-library .avatar-list {
+  display: flex;
+  gap: 20px;
+}
+
+.avatar-item {
+  text-align: center;
+}
+
+.avatar-item img {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+/* Animation Generator */
+.animation-generator {
+  margin-top: 30px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.animation-generator form {
+  margin-bottom: 20px;
+}
+
+.animation-generator select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.animation-preview video {
+  width: 100%;
+  max-width: 400px;
+  display: block;
+  margin: 15px auto;
+  border-radius: 8px;
+}
+
+/* Animation History */
+.animation-history {
+  margin-top: 30px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.animation-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.animation-item {
+  width: 240px;
+  text-align: center;
+}
+
+.animation-item video {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
 
