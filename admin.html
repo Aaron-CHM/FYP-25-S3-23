@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+  <div class="logo">Face Animation Admin</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#" class="active">Admin Dashboard</a></li>
+    <li><a href="login.html">Logout</a></li>
+  </ul>
+</div>
+
+<section class="user-dashboard">
+  <div class="dashboard-container">
+    <h2>Welcome, Admin</h2>
+    <p>Manage users, avatars, expressions, and platform settings.</p>
+
+    <!-- Profile Section -->
+    <div class="profile-card">
+      <h3>👤 Admin Profile</h3>
+      <p><strong>Username:</strong> <span id="adminUsername">AdminUser</span></p>
+      <p><strong>Email:</strong> <span id="adminEmail">admin@email.com</span></p>
+      <div class="profile-actions">
+        <button class="btn small-btn" id="editAdminProfileBtn">Edit Profile</button>
+        <button class="btn small-btn danger-btn" id="logoutAdminBtn">Logout</button>
+      </div>
+
+      <div id="editAdminForm" style="display:none; margin-top:10px;">
+        <input type="text" id="newAdminUsername" placeholder="New Username">
+        <input type="email" id="newAdminEmail" placeholder="New Email">
+        <button class="btn small-btn" id="saveAdminProfileBtn">Save</button>
+        <button class="btn small-btn" id="cancelAdminEditBtn">Cancel</button>
+      </div>
+    </div>
+
+    <!-- User Management -->
+    <div class="profile-card">
+      <h3>👥 User Management</h3>
+      <div class="profile-actions">
+        <input type="text" id="searchUser" placeholder="Search user...">
+        <button class="btn small-btn" id="searchUserBtn">Search</button>
+      </div>
+      <div class="profile-actions">
+        <button class="btn small-btn" id="createUserBtn">Create Account</button>
+        <button class="btn small-btn" id="viewUserDetailsBtn">View Account Details</button>
+        <button class="btn small-btn danger-btn" id="suspendUserBtn">Suspend Account</button>
+        <button class="btn small-btn" id="updateUserBtn">Update Account Info</button>
+      </div>
+      <div id="userList" style="margin-top:15px;"></div>
+    </div>
+
+    <!-- Avatar Management -->
+    <div class="avatar-management">
+      <h3>🖼️ Avatar Management</h3>
+      <div class="upload-form">
+        <input type="text" id="searchAvatar" placeholder="Search avatar...">
+        <button class="btn small-btn" id="searchAvatarBtn">Search</button>
+      </div>
+      <form class="upload-form">
+        <input type="file" id="adminAvatarUpload" accept="image/*">
+        <button type="button" class="btn small-btn" id="addAvatarBtn">Add Avatar</button>
+      </form>
+      <div class="avatar-library">
+        <h4>Available Avatars</h4>
+        <div class="avatar-list" id="adminAvatarList"></div>
+      </div>
+    </div>
+
+    <!-- Expression Management -->
+    <div class="avatar-management">
+      <h3>😃 Expression Management</h3>
+      <div class="upload-form">
+        <input type="text" id="searchExpression" placeholder="Search expression...">
+        <button class="btn small-btn" id="searchExpressionBtn">Search</button>
+      </div>
+      <form class="upload-form">
+        <input type="text" id="expressionName" placeholder="Expression name (e.g., Smile)">
+        <button type="button" class="btn small-btn" id="addExpressionBtn">Add Expression</button>
+      </form>
+      <div class="avatar-library">
+        <h4>Available Expressions</h4>
+        <ul id="expressionList"></ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="footer">
+  <p>&copy; 2025 Face Animation Platform | Admin Panel</p>
+</div>
+
+<script>
+// --- Admin Profile ---
+const editAdminProfileBtn = document.getElementById('editAdminProfileBtn');
+const editAdminForm = document.getElementById('editAdminForm');
+const cancelAdminEditBtn = document.getElementById('cancelAdminEditBtn');
+const saveAdminProfileBtn = document.getElementById('saveAdminProfileBtn');
+
+editAdminProfileBtn.onclick = () => editAdminForm.style.display = 'block';
+cancelAdminEditBtn.onclick = () => editAdminForm.style.display = 'none';
+saveAdminProfileBtn.onclick = () => {
+  const newName = document.getElementById('newAdminUsername').value;
+  const newEmail = document.getElementById('newAdminEmail').value;
+  if (newName) document.getElementById('adminUsername').innerText = newName;
+  if (newEmail) document.getElementById('adminEmail').innerText = newEmail;
+  editAdminForm.style.display = 'none';
+  alert('Admin profile updated successfully!');
+};
+
+// --- User Management ---
+const userList = document.getElementById('userList');
+const createUserBtn = document.getElementById('createUserBtn');
+const searchUserBtn = document.getElementById('searchUserBtn');
+const suspendUserBtn = document.getElementById('suspendUserBtn');
+const viewUserDetailsBtn = document.getElementById('viewUserDetailsBtn');
+const updateUserBtn = document.getElementById('updateUserBtn');
+
+createUserBtn.onclick = () => {
+  const name = prompt('Enter new username:');
+  const email = prompt('Enter email:');
+  if (name && email) {
+    const div = document.createElement('div');
+    div.className = 'user-item';
+    div.innerHTML = `<p><strong>${name}</strong> (${email}) 
+      <button class="btn small-btn danger-btn deleteUserBtn">Delete</button></p>`;
+    userList.appendChild(div);
+    div.querySelector('.deleteUserBtn').onclick = () => div.remove();
+  }
+};
+
+searchUserBtn.onclick = () => {
+  const query = document.getElementById('searchUser').value.toLowerCase();
+  alert(`Searching user: ${query}`);
+};
+
+viewUserDetailsBtn.onclick = () => alert('Viewing user account details...');
+suspendUserBtn.onclick = () => alert('User account suspended.');
+updateUserBtn.onclick = () => alert('User account details updated.');
+
+// --- Avatar Management ---
+const adminAvatarUpload = document.getElementById('adminAvatarUpload');
+const adminAvatarList = document.getElementById('adminAvatarList');
+const addAvatarBtn = document.getElementById('addAvatarBtn');
+const searchAvatarBtn = document.getElementById('searchAvatarBtn');
+
+addAvatarBtn.onclick = () => {
+  const file = adminAvatarUpload.files[0];
+  if (!file) return alert('Please select an avatar image to upload.');
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const avatarDiv = document.createElement('div');
+    avatarDiv.className = 'avatar-item';
+    avatarDiv.innerHTML = `<img src="${e.target.result}" alt="avatar">
+                           <button class="btn small-btn danger-btn deleteAvatarBtn">Delete</button>`;
+    adminAvatarList.appendChild(avatarDiv);
+    avatarDiv.querySelector('.deleteAvatarBtn').onclick = () => avatarDiv.remove();
+  };
+  reader.readAsDataURL(file);
+  adminAvatarUpload.value = '';
+};
+
+searchAvatarBtn.onclick = () => {
+  const query = document.getElementById('searchAvatar').value.toLowerCase();
+  alert(`Searching avatar: ${query}`);
+};
+
+// --- Expression Management ---
+const expressionList = document.getElementById('expressionList');
+const addExpressionBtn = document.getElementById('addExpressionBtn');
+const searchExpressionBtn = document.getElementById('searchExpressionBtn');
+
+addExpressionBtn.onclick = () => {
+  const name = document.getElementById('expressionName').value.trim();
+  if (!name) return alert('Please enter an expression name.');
+  const li = document.createElement('li');
+  li.innerHTML = `${name} <button class="btn small-btn danger-btn deleteExpressionBtn">Delete</button>`;
+  expressionList.appendChild(li);
+  li.querySelector('.deleteExpressionBtn').onclick = () => li.remove();
+  document.getElementById('expressionName').value = '';
+};
+
+searchExpressionBtn.onclick = () => {
+  const query = document.getElementById('searchExpression').value.toLowerCase();
+  alert(`Searching expression: ${query}`);
+};
+</script>
+
+</body>
+</html>
