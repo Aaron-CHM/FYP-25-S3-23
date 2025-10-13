@@ -11,7 +11,6 @@
   <div class="navbar">
     <div class="logo">Face Animation</div>
     <ul>
-      <li><a href="index.html">Home</a></li>
       <li><a href="#" class="active">Guest Dashboard</a></li>
       <li><a href="login.html">Logout</a></li>
     </ul>
@@ -62,43 +61,7 @@
     <p>&copy; 2025 Face Animation. All Rights Reserved.</p>
   </div>
 
-<script>
-  // Upgrade button scrolls to subscription form
-  const upgradeBtn = document.getElementById('upgradeBtn');
-  const upgradeForm = document.getElementById('upgradeForm');
-
-  upgradeBtn.onclick = () => {
-    upgradeForm.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  // Handle subscription submission
-  upgradeForm.onsubmit = (e) => {
-    e.preventDefault();
-    const plan = document.getElementById('plan').value;
-    alert(`You selected the ${plan} plan. Redirecting to payment...`);
-  };
-
-  // Sample animations gallery
-  const sampleAnimations = [
-    'sample1.mp4',
-    'sample2.mp4',
-    'sample3.mp4',
-    'sample4.mp4'
-  ];
-
-  const sampleAnimationList = document.getElementById('sampleAnimationList');
-
-  sampleAnimations.forEach(src => {
-    const animDiv = document.createElement('div');
-    animDiv.className = 'animation-item';
-    animDiv.innerHTML = `
-      <video controls>
-        <source src="${src}" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>`;
-    sampleAnimationList.appendChild(animDiv);
-  });
-</script>
+<script src="assets/js/main.js"></script>
 
 </body>
 </html>

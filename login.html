@@ -44,55 +44,7 @@
 
 </div>
 
-<script>
-  // Test credentials
-  const testCredentials = {
-    "User Login": { email: "user@test.com", password: "1234", redirect: "user.html" },
-    "Admin Login": { email: "admin@test.com", password: "admin", redirect: "admin.html" },
-    "Guest Login": { email: "guest@test.com", password: "guest", redirect: "guest.html" },
-    "Subscribers / Paid User Login": { email: "subscriber@test.com", password: "sub123", redirect: "subscriber.html" }
-  };
-
-  const formTitle = document.getElementById("formTitle");
-  const emailInput = document.getElementById("email");
-  const passwordInput = document.getElementById("password");
-  const roleItems = document.querySelectorAll(".role-item");
-
-  // Function to activate a role and auto-fill credentials
-  function activateRole(roleText) {
-    roleItems.forEach(item => item.classList.remove("active"));
-    const activeItem = Array.from(roleItems).find(item => item.dataset.role === roleText);
-    activeItem.classList.add("active");
-
-    formTitle.textContent = roleText;
-    emailInput.value = testCredentials[roleText].email;
-    passwordInput.value = testCredentials[roleText].password;
-  }
-
-  // Add click listeners to sidebar roles
-  roleItems.forEach(item => {
-    item.addEventListener("click", () => {
-      activateRole(item.dataset.role);
-    });
-  });
-
-  // Initialize with default role
-  window.onload = () => activateRole("User Login");
-
-  // Login form handler
-  document.getElementById("loginForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const activeRole = document.querySelector(".role-item.active").dataset.role;
-    const creds = testCredentials[activeRole];
-
-    if (emailInput.value === creds.email && passwordInput.value === creds.password) {
-      alert(`${activeRole} successful! Redirecting...`);
-      window.location.href = creds.redirect;
-    } else {
-      alert("Invalid email or password. Use the test credentials.");
-    }
-  });
-</script>
+<script src="assets/js/main.js"></script>
 
 </body>
 </html>

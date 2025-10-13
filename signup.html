@@ -13,16 +13,16 @@
     <div class="sidebar">
       <div class="logo">Sign Up</div>
       <ul class="role-list">
-        <li class="role-item active" onclick="showForm('user')">
+        <li class="role-item active" data-role="user">
           <span class="icon">👤</span> User Sign Up
         </li>
-        <li class="role-item" onclick="showForm('admin')">
+        <li class="role-item" data-role="admin">
           <span class="icon">🛠️</span> Admin Sign Up
         </li>
-        <li class="role-item" onclick="showForm('guest')">
+        <li class="role-item" data-role="guest">
           <span class="icon">🚪</span> Guest Sign Up
         </li>
-        <li class="role-item" onclick="showForm('subscriber')">
+        <li class="role-item" data-role="subscriber">
           <span class="icon">💳</span> Subscribers / Paid User
         </li>
       </ul>
@@ -58,19 +58,6 @@
 
   </div>
 
-  <script>
-    function showForm(role) {
-      let title = document.getElementById("formTitle");
-
-      if (role === "user") title.textContent = "User Sign Up";
-      if (role === "admin") title.textContent = "Admin Sign Up";
-      if (role === "guest") title.textContent = "Guest Sign Up";
-      if (role === "subscriber") title.textContent = "Subscribers / Paid User Sign Up";
-
-      // highlight active role
-      document.querySelectorAll(".role-item").forEach(el => el.classList.remove("active"));
-      event.target.closest(".role-item").classList.add("active");
-    }
-  </script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

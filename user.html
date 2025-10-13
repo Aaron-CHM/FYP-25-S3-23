@@ -11,7 +11,6 @@
   <div class="navbar">
     <div class="logo">Face Animation</div>
     <ul>
-      <li><a href="index.html">Home</a></li>
       <li><a href="#" class="active">User Dashboard</a></li>
       <li><a href="login.html">Logout</a></li>
     </ul>
@@ -120,101 +119,7 @@
     <p>&copy; 2025 Face Animation. All Rights Reserved.</p>
   </div>
 
-<script>
-  // Profile edit functionality
-  const editProfileBtn = document.getElementById('editProfileBtn');
-  const editProfileForm = document.getElementById('editProfileForm');
-  const cancelEditBtn = document.getElementById('cancelEditBtn');
-  const saveProfileBtn = document.getElementById('saveProfileBtn');
-
-  editProfileBtn.onclick = () => editProfileForm.style.display = 'block';
-  cancelEditBtn.onclick = () => editProfileForm.style.display = 'none';
-  saveProfileBtn.onclick = () => {
-    const newUsername = document.getElementById('newUsername').value;
-    const newEmail = document.getElementById('newEmail').value;
-    if(newUsername) document.getElementById('username').innerText = newUsername;
-    if(newEmail) document.getElementById('email').innerText = newEmail;
-    editProfileForm.style.display = 'none';
-  }
-
-  // Delete account
-  const deleteAccountBtn = document.getElementById('deleteAccountBtn');
-  deleteAccountBtn.onclick = () => alert('Account deletion triggered');
-
-  // Avatar management
-  const avatarUpload = document.getElementById('avatarUpload');
-  const uploadAvatarBtn = document.getElementById('uploadAvatarBtn');
-  const avatarList = document.getElementById('avatarList');
-  const avatarSelect = document.getElementById('avatarSelect');
-
-  uploadAvatarBtn.onclick = () => {
-    if(avatarUpload.files.length === 0) return alert('Select an avatar to upload');
-    const file = avatarUpload.files[0];
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      const avatarDiv = document.createElement('div');
-      avatarDiv.className = 'avatar-item';
-      avatarDiv.innerHTML = `
-        <img src="${e.target.result}" alt="Avatar">
-        <div class="profile-actions">
-
-          <button class="btn small-btn danger-btn deleteAvatarBtn">Delete</button>
-        </div>`;
-      avatarList.appendChild(avatarDiv);
-
-      // Add to avatar dropdown
-      const option = document.createElement('option');
-      option.value = e.target.result;
-      option.text = file.name;
-      avatarSelect.add(option);
-
-      // Delete avatar
-      avatarDiv.querySelector('.deleteAvatarBtn').onclick = () => {
-        avatarDiv.remove();
-        option.remove();
-      };
-
-      // Select avatar
-      avatarDiv.querySelector('.selectAvatarBtn').onclick = () => {
-        avatarSelect.value = option.value;
-      };
-    };
-    reader.readAsDataURL(file);
-    avatarUpload.value = '';
-  };
-
-  // Animation generation
-  const generateBtn = document.getElementById('generateBtn');
-  const animationPreview = document.getElementById('animationPreview');
-  const previewVideo = document.getElementById('previewVideo');
-  const saveAnimationBtn = document.getElementById('saveAnimationBtn');
-  const cancelPreviewBtn = document.getElementById('cancelPreviewBtn');
-  const animationList = document.getElementById('animationList');
-
-  generateBtn.onclick = () => {
-    const avatarSrc = avatarSelect.value;
-    const expression = document.getElementById('expressionSelect').value;
-    if(!avatarSrc || !expression) return alert('Select avatar and expression');
-    previewVideo.src = avatarSrc; // placeholder for actual animation
-    animationPreview.style.display = 'block';
-  }
-
-  cancelPreviewBtn.onclick = () => animationPreview.style.display = 'none';
-
-  saveAnimationBtn.onclick = () => {
-    const videoSrc = previewVideo.src;
-    const animDiv = document.createElement('div');
-    animDiv.className = 'animation-item';
-    animDiv.innerHTML = `
-      <video src="${videoSrc}" controls></video>
-      <button class="btn small-btn danger-btn deleteAnimationBtn">Delete</button>`;
-    animationList.appendChild(animDiv);
-
-    animDiv.querySelector('.deleteAnimationBtn').onclick = () => animDiv.remove();
-
-    animationPreview.style.display = 'none';
-  }
-</script>
+<script src="assets/js/main.js"></script>
 
 </body>
 </html>
