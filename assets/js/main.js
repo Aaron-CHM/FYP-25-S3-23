@@ -17,7 +17,6 @@
       const map = {
         user: 'User Sign Up',
         admin: 'Admin Sign Up',
-        guest: 'Guest Sign Up',
         subscriber: 'Subscribers / Paid User Sign Up'
       };
 
@@ -46,7 +45,6 @@
       const testCredentials = {
         "User Login": { email: "user@test.com", password: "1234", redirect: "user.html" },
         "Admin Login": { email: "admin@test.com", password: "admin", redirect: "admin.html" },
-        "Guest Login": { email: "guest@test.com", password: "guest", redirect: "guest.html" },
         "Subscribers / Paid User Login": { email: "subscriber@test.com", password: "sub123", redirect: "subscriber.html" }
       };
 

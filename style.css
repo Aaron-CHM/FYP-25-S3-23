@@ -14,40 +14,6 @@ body {
   height: 100vh;
 }
 
-/* Sidebar */
-.sidebar {
-  width: 260px;
-  background: #009688;
-  color: #fff;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.logo {
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 40px;
-}
-
-.role-list {
-  list-style: none;
-}
-
-.role-item {
-  padding: 12px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: background 0.3s;
-}
-
-.role-item:hover, .role-item.active {
-  background: rgba(255, 255, 255, 0.2);
-}
 
 /* Main Content */
 .main-content {
@@ -218,35 +184,43 @@ input {
   color: #333;
 }
 
-/* Video Section */
-.video-section {
-  padding: 60px 20px;
-  max-width: 900px;
-  margin: auto;
+/* Sign Up Prompt */
+.signup-prompt {
   text-align: center;
-}
-
-.video-section h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.video-container {
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  margin: auto;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px;
   border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 400px;
+  margin: 40px auto;
 }
 
-.video-container iframe {
-  width: 100%;
-  height: 450px;
-  border: none;
+.signup-prompt h3 {
+  font-size: 22px;
+  color: #009688;
+  margin-bottom: 10px;
 }
+
+.signup-prompt p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px; /* space before button */
+}
+
+.signup-prompt .btn {
+  display: inline-block; /* ensures button sits below text */
+  background: #009688;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.signup-prompt .btn:hover {
+  background: #00796b;
+}
+
 
 
 /* Footer */
