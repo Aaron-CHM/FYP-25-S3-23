@@ -11,7 +11,7 @@ print(generate_password_hash('admin123'))
 
 
 app = Flask(__name__, 
-            static_folder='static',
+            static_folder='statics',
             static_url_path='/static',
             template_folder='templates')
 
